@@ -4,12 +4,12 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 const app = express();
 dotenv.config();
-import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+import { notFound, errorHandler } from "../middleware/errorMiddleware.js";
 const port = process.env.PORT || 5000;
-import userRoutes from "./routes/userRoutes.js";
-import productRoutes from "./routes/productRoutes.js";
-import orderRoutes from "./routes/orderRoutes.js";
-import connectDb from "./config/db.js";
+import userRoutes from "../routes/userRoutes.js";
+import productRoutes from "../routes/productRoutes.js";
+import orderRoutes from "../routes/orderRoutes.js";
+import connectDb from "../config/db.js";
 
 connectDb();
 app.use(cors());
