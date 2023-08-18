@@ -14,22 +14,27 @@ import connectDb from "../config/db.js";
 connectDb();
 app.use(cors());
 app.use(cookieParser());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.get("/", (req, res) => {
+  res.send("app successfully running");
+});
 
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders/", orderRoutes);
 
-app.get("/", (req, res, next) => {
+//error handeler
+app.use(notFound);
+app.use(errorHandler);
+
+app.use("/", (req, res, next) => {
   res.status(200).json({
     message: "bad request",
   });
 });
-
-//error handeler
-app.use(notFound);
-app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`server is runningss port ${port}`);
